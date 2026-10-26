@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+
+import {
+  createContext,
+  useContext,
+  useState,
+  type ReactNode,
+} from "react";
 
 export interface CartItem {
   id: string;
@@ -19,54 +25,94 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-export const CartProvider = ({ children }: { children: ReactNode }) => {
+export const CartProvider = ({
+  children,
+}: {
+  children: ReactNode;
+}) => {
   const [cart, setCart] = useState<CartItem[]>([]);
 
+  // Add a new item or increase the quantity of an existing item.
   const addToCart = (item: CartItem) => {
-    setCart((prev) => {
-      const existing = prev.find((p) => p.id === item.id);
+    if (
+      !item.id ||
+      !item.name ||
+      !Number.isFinite(item.price) ||
+      item.price < 0 ||
+      !Number.isFinite(item.quantity) ||
+      item.quantity <= 0
+    ) {
+      console.error("Invalid cart item:", item);
+      return;
+    }
 
-      if (existing) {
-        return prev.map((p) =>
-          p.id === item.id
-            ? { ...p, quantity: p.quantity + item.quantity }
-            : p
+    setCart((previousCart) => {
+      const existingItem = previousCart.find(
+        (cartItem) => cartItem.id === item.id
+      );
+
+      if (existingItem) {
+        return previousCart.map((cartItem) =>
+          cartItem.id === item.id
+            ? {
+                ...cartItem,
+                quantity: cartItem.quantity + item.quantity,
+              }
+            : cartItem
         );
       }
 
-      return [...prev, item];
+      return [...previousCart, { ...item }];
     });
   };
-const increaseQuantity = (id: string) => {
-  setCart((prev) =>
-    prev.map((item) =>
-      item.id === id
-        ? { ...item, quantity: item.quantity + 1 }
-        : item
-    )
-  );
-};
 
-const decreaseQuantity = (id: string) => {
-  setCart((prev) =>
-    prev
-      .map((item) =>
+  // Increase an item's quantity by one.
+  const increaseQuantity = (id: string) => {
+    setCart((previousCart) =>
+      previousCart.map((item) =>
         item.id === id
-          ? { ...item, quantity: item.quantity - 1 }
+          ? { ...item, quantity: item.quantity + 1 }
           : item
       )
-      .filter((item) => item.quantity > 0)
-  );
-};
+    );
+  };
 
-const removeFromCart = (id: string) => {
-  setCart((prev) => prev.filter((item) => item.id !== id));
-};
-const clearCart = () => {
-  setCart([]);
-};
+  // Decrease an item's quantity and remove it when it reaches zero.
+  const decreaseQuantity = (id: string) => {
+    setCart((previousCart) =>
+      previousCart
+        .map((item) =>
+          item.id === id
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        .filter((item) => item.quantity > 0)
+    );
+  };
+
+  // Remove an item completely.
+  const removeFromCart = (id: string) => {
+    setCart((previousCart) =>
+      previousCart.filter((item) => item.id !== id)
+    );
+  };
+
+  // Empty the cart after a successful order, if needed.
+  const clearCart = () => {
+    setCart([]);
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, increaseQuantity, decreaseQuantity, removeFromCart, clearCart }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        addToCart,
+        increaseQuantity,
+        decreaseQuantity,
+        removeFromCart,
+        clearCart,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

@@ -1,16 +1,30 @@
-import { useState } from "react";
+import { useEffect,useState } from "react";
 import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
-
+import { auth } from "../lib/firebase";
 declare global {
   interface Window {
     Razorpay: any;
   }
 }
+interface SavedAddress {
+  _id: string;
+  label: string;
+  fullName: string;
+  phone: string;
+  houseNumber: string;
+  street: string;
+  city: string;
+  state: string;
+  pinCode: string;
+  isDefault: boolean;
+}
 
 const CheckoutPage = () => {
   const { cart, clearCart } = useCart();
   const navigate = useNavigate();
+  
+
 
   // ================= DELIVERY DETAILS =================
 
@@ -21,6 +35,48 @@ const CheckoutPage = () => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [pincode, setPincode] = useState("");
+  const [savedAddresses, setSavedAddresses] = useState<SavedAddress[]>([]);
+const [selectedAddressId, setSelectedAddressId] = useState("");
+const [isLoadingAddresses, setIsLoadingAddresses] = useState(true);
+useEffect(() => {
+  const fetchSavedAddresses = async () => {
+    try {
+      const user = auth.currentUser;
+
+      if (!user) {
+        return;
+      }
+
+      const response = await fetch(
+        `http://localhost:5000/api/users/${user.uid}/addresses`
+      );
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Failed to fetch addresses");
+      }
+
+      setSavedAddresses(data.data);
+
+      // Automatically select the default address
+      const defaultAddress = data.data.find(
+        (address: SavedAddress) => address.isDefault
+      );
+
+      if (defaultAddress) {
+        setSelectedAddressId(defaultAddress._id);
+      }
+    } catch (error) {
+      console.error("Error fetching saved addresses:", error);
+    } finally {
+      setIsLoadingAddresses(false);
+    }
+  };
+
+  fetchSavedAddresses();
+}, []);
+
 
   // ================= PAYMENT =================
 
@@ -697,6 +753,62 @@ const CheckoutPage = () => {
             </div>
 
             <div className="space-y-5">
+              {/* ================= SAVED ADDRESSES ================= */}
+
+{!isLoadingAddresses && savedAddresses.length > 0 && (
+  <div className="space-y-3">
+    <h3 className="text-lg font-semibold text-gray-800">
+      Select a Saved Address
+    </h3>
+
+    {savedAddresses.map((savedAddress) => (
+      <div
+        key={savedAddress._id}
+        className={`border rounded-xl p-4 cursor-pointer transition ${
+          selectedAddressId === savedAddress._id
+            ? "border-orange-500 bg-orange-50"
+            : "border-gray-200"
+        }`}
+        onClick={() => setSelectedAddressId(savedAddress._id)}
+      >
+        <div className="flex items-center gap-3">
+          <input
+            type="radio"
+            name="savedAddress"
+            checked={selectedAddressId === savedAddress._id}
+            onChange={() =>
+              setSelectedAddressId(savedAddress._id)
+            }
+          />
+
+          <div>
+            <p className="font-semibold text-gray-800">
+              {savedAddress.label}
+            </p>
+
+            <p className="text-gray-600">
+              {savedAddress.fullName}
+            </p>
+
+            <p className="text-gray-600">
+              {savedAddress.houseNumber},{" "}
+              {savedAddress.street}
+            </p>
+
+            <p className="text-gray-600">
+              {savedAddress.city}, {savedAddress.state} -{" "}
+              {savedAddress.pinCode}
+            </p>
+
+            <p className="text-gray-600">
+              Phone: {savedAddress.phone}
+            </p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+)}
 
               <input
                 type="text"

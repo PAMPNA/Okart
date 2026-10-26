@@ -15,6 +15,13 @@ const total = subtotal + delivery;
   return (
     
     <div className="min-h-screen bg-gray-100 p-10">
+      <button
+  onClick={() => navigate(-1)}
+  className="flex items-center gap-2 text-gray-600 hover:text-orange-500 mb-6 font-medium"
+>
+  <span className="text-2xl">←</span>
+  Back
+</button>
      <h1 className="text-5xl font-bold mb-10">
   Shopping Cart
 </h1>

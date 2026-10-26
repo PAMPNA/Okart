@@ -35,6 +35,12 @@ const categories = [
     emoji: "☕",
     color: "bg-blue-100",
   },
+  {
+  id: 7,
+  name: "Dairy",
+  emoji: "🥛",
+  color: "bg-blue-100",
+},
 ];
 
 export default categories;

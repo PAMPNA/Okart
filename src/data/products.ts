@@ -1,170 +1,147 @@
-import type { Product } from "../types";
 
-import dharwadPeda from "../assets/products/dharwad peda.png";
-import mysorePak from "../assets/products/mysore pak.png";
-import tirunelveliHalwa from "../assets/products/tirunelveli halwa.png";
-import bandaruLadoo from "../assets/products/bandaru ladoo.png";
-import pootharekulu from "../assets/products/pootarekulu.png";
-import kajuKatli from "../assets/products/kaju katli.png";
-import bananaChips from "../assets/products/banana chips.png";
-import murukku from "../assets/products/murukku.png";
-import khakhra from "../assets/products/khakhra.png";
-import avakayaPickle from "../assets/products/avakaya pickle.png";
-import gunturKaram from "../assets/products/guntur karam.png";
-import arakuCoffee from "../assets/products/araku coffee.png";
-import a2DesiGhee from "../assets/products/A2 desi ghee.png";
-export const products: Product[] = [
+import plainImage from '../assets/products/Pootharekulu-plain.jpg';
+import sugarPlainImage from '../assets/products/Pootharekulu-sugar plain.jpg';
+import bellamImage from '../assets/products/Pootharekulu-bellam.jpeg';
+import dryFruitImage from '../assets/products/pootharekulu-dry fruit.jpg';
+import dryFruitSugarImage from '../assets/products/Pootharekulu-dry fruit sugar.jpeg';
+import dryFruitBellamImage from '../assets/products/Pootharekulu-dry fruit bellam.jpeg';
+import kajuImage from '../assets/products/Pootharekulu-sugar kaju.jpg';
+import bellamKajuImage from '../assets/products/Pootharekulu-bellam kaju.jpeg';
+import kajuBadamImage from '../assets/products/Pootharekulu-kaju badam.jpg';
+import kajuBadamPistaImage from '../assets/products/Pootharekulu- kaju badam pista.jpeg';
+import chocolateImage from '../assets/products/Pootharekulu- chocolate dry fruit.jpeg';
+import datesImage from '../assets/products/Pootharekulu- dates and dry fruit.jpg';
+import assortedImage from '../assets/products/Pootharekulu- exotic assorted .jpg';
+
+export const products = [
   {
-    id: "dharwad-peda",
-    name: "Original Dharwad Peda",
-    origin: "Dharwad, Karnataka",
-    price: 250,
-    unit: "500g",
-    verifiedOrigin: true,
-    description: "Authentic Dharwad Peda made using traditional methods.",
-    image: dharwadPeda,
+    id: '1',
+    name: 'Traditional Plain Pootharekulu',
+    description:
+      'Authentic Atreyapuram Pootharekulu with delicate rice-paper layers and traditional sweetness.',
+    price: 199,
+    origin: 'Atreyapuram, Andhra Pradesh',
+    category: 'Traditional',
+    image: plainImage,
   },
-
   {
-    id: "mysore-pak",
-    name: "Mysore Pak",
-    origin: "Mysore, Karnataka",
-    price: 320,
-    unit: "500g",
-    verifiedOrigin: true,
-    description: "Soft and rich Mysore Pak prepared with pure ghee.",
-    image: mysorePak,
+    id: '2',
+    name: 'Sugar Plain Pootharekulu',
+    description:
+      'Traditional paper sweet with a delicious sugar filling.',
+    price: 219,
+    origin: 'Atreyapuram, Andhra Pradesh',
+    category: 'Sugar',
+    image: sugarPlainImage,
   },
-
   {
-    id: "tirunelveli-halwa",
-    name: "Tirunelveli Halwa",
-    origin: "Tirunelveli, Tamil Nadu",
-    price: 350,
-    unit: "500g",
-    verifiedOrigin: true,
-    description: "World-famous Tirunelveli wheat halwa.",
-    image: tirunelveliHalwa,
+    id: '3',
+    name: 'Bellam Pootharekulu',
+    description:
+      'Traditional Pootharekulu sweetened with jaggery.',
+    price: 229,
+    origin: 'Atreyapuram, Andhra Pradesh',
+    category: 'Jaggery',
+    image: bellamImage,
   },
-
   {
-    id: "bandaru-laddu",
-    name: "Bandaru Laddu",
-    origin: "Machilipatnam, Andhra Pradesh",
-    price: 280,
-    unit: "500g",
-    verifiedOrigin: true,
-    description: "Traditional Andhra sweet with authentic taste.",
-    image: bandaruLadoo,
+    id: '4',
+    name: 'Dry Fruits Pootharekulu',
+    description:
+      'Delicate Pootharekulu with a delicious dry-fruit filling.',
+    price: 279,
+    origin: 'Atreyapuram, Andhra Pradesh',
+    category: 'Dry Fruits',
+    image: dryFruitImage,
   },
-
   {
-    id: "pootharekulu",
-    name: "Pootharekulu",
-    origin: "Atreyapuram, Andhra Pradesh",
-    price: 420,
-    unit: "10 Pieces",
-    verifiedOrigin: true,
-    description: "Delicate paper sweet made using rice starch.",
-    image: pootharekulu,
+    id: '5',
+    name: 'Sugar Dry Fruits Pootharekulu',
+    description:
+      'A sweet traditional treat with a rich dry-fruit filling.',
+    price: 299,
+    origin: 'Atreyapuram, Andhra Pradesh',
+    category: 'Dry Fruits',
+    image: dryFruitSugarImage,
   },
-
   {
-    id: "kaju-katli",
-    name: "Kaju Katli",
-    origin: "North India",
-    price: 500,
-    unit: "500g",
-    verifiedOrigin: true,
-    description: "Premium cashew sweet.",
-    image: kajuKatli,
+    id: '6',
+    name: 'Bellam Dry Fruits Pootharekulu',
+    description:
+      'Jaggery-sweetened Pootharekulu with dry fruits.',
+    price: 319,
+    origin: 'Atreyapuram, Andhra Pradesh',
+    category: 'Dry Fruits',
+    image: dryFruitBellamImage,
   },
-
   {
-    id: "banana-chips",
-    name: "Banana Chips",
-    origin: "Kerala",
-    price: 180,
-    unit: "250g",
-    verifiedOrigin: true,
-    description: "Crispy Kerala style banana chips.",
-    image: bananaChips,
+    id: '7',
+    name: 'Sugar Kaju Pootharekulu',
+    description:
+      'Traditional Pootharekulu with a rich cashew filling.',
+    price: 319,
+    origin: 'Atreyapuram, Andhra Pradesh',
+    category: 'Kaju',
+    image: kajuImage,
   },
-
   {
-    id: "murukku",
-    name: "Murukku",
-    origin: "Tamil Nadu",
-    price: 170,
-    unit: "250g",
-    verifiedOrigin: true,
-    description: "Crunchy South Indian snack.",
-    image: murukku,
+    id: '8',
+    name: 'Bellam Kaju Pootharekulu',
+    description:
+      'A delicious combination of jaggery and cashews.',
+    price: 329,
+    origin: 'Atreyapuram, Andhra Pradesh',
+    category: 'Kaju',
+    image: bellamKajuImage,
   },
-
   {
-    id: "khakhra",
-    name: "Khakhra",
-    origin: "Gujarat",
-    price: 160,
-    unit: "250g",
-    verifiedOrigin: true,
-    description: "Healthy roasted Gujarati snack.",
-    image: khakhra,
+    id: '9',
+    name: 'Kaju Badam Pootharekulu',
+    description:
+      'A delightful combination of cashews and almonds.',
+    price: 349,
+    origin: 'Atreyapuram, Andhra Pradesh',
+    category: 'Dry Fruits',
+    image: kajuBadamImage,
   },
-
   {
-    id: "avakaya-pickle",
-    name: "Avakaya Pickle",
-    origin: "Andhra Pradesh",
-    price: 260,
-    unit: "500g",
-    verifiedOrigin: true,
-    description: "Traditional mango pickle.",
-    image: avakayaPickle,
+    id: '10',
+    name: 'Kaju Badam Pista Pootharekulu',
+    description:
+      'A nutty treat with cashews, almonds and pistachios.',
+    price: 379,
+    origin: 'Atreyapuram, Andhra Pradesh',
+    category: 'Dry Fruits',
+    image: kajuBadamPistaImage,
   },
-
   {
-    id: "guntur-chilli",
-    name: "Guntur Chilli Powder",
-    origin: "Guntur, Andhra Pradesh",
-    price: 210,
-    unit: "500g",
-    verifiedOrigin: true,
-    description: "Premium spicy red chilli powder.",
-    image: gunturKaram,
+    id: '11',
+    name: 'Chocolate Dry Fruits Pootharekulu',
+    description:
+      'A modern variation combining chocolate flavour and dry fruits.',
+    price: 349,
+    origin: 'Atreyapuram, Andhra Pradesh',
+    category: 'Chocolate',
+    image: chocolateImage,
   },
-
   {
-    id: "araku-coffee",
-    name: "Araku Coffee",
-    origin: "Araku Valley",
-    price: 450,
-    unit: "500g",
-    verifiedOrigin: true,
-    description: "Organic tribal coffee.",
-    image: arakuCoffee,
+    id: '12',
+    name: 'Dates and Dry Fruits Pootharekulu',
+    description:
+      'A specialty variation with dates and dry-fruit filling.',
+    price: 349,
+    origin: 'Atreyapuram, Andhra Pradesh',
+    category: 'Dry Fruits',
+    image: datesImage,
   },
-
   {
-    id: "basmati-rice",
-    name: "Premium Basmati Rice",
-    origin: "Punjab",
-    price: 620,
-    unit: "5kg",
-    verifiedOrigin: true,
-    description: "Long grain premium basmati rice.",
-    image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=900&q=80",
-  },
-
-  {
-    id: "a2-ghee",
-    name: "A2 Desi Ghee",
-    origin: "Karnataka",
-    price: 850,
-    unit: "1L",
-    verifiedOrigin: true,
-    description: "Pure A2 cow ghee.",
-    image: a2DesiGhee,
+    id: '13',
+    name: 'Exotic Assorted Pootharekulu Gift Box',
+    description:
+      'A premium assortment of Pootharekulu varieties for gifting and celebrations.',
+    price: 599,
+    origin: 'Atreyapuram, Andhra Pradesh',
+    category: 'Gift Box',
+    image: assortedImage,
   },
 ];

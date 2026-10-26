@@ -7,6 +7,7 @@ export interface Product {
   verifiedOrigin: boolean;
   description: string;
   image: string;
+  category: string;
 }
 
 export interface DeliveryFormValues {

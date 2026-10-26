@@ -64,6 +64,7 @@ const Navbar = () => {
           </button>
 
           <button
+          onClick={() => navigate("/profile")}
             className="hover:text-orange-600 font-medium"
           >
             👤 Profile

@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 interface Props {
   name: string;
   emoji: string;
@@ -5,8 +7,15 @@ interface Props {
 }
 
 const CategoryCard = ({ name, emoji, color }: Props) => {
+  const navigate = useNavigate();
+
+  const handleCategoryClick = () => {
+    navigate(`/products?category=${encodeURIComponent(name)}`);
+  };
+
   return (
     <div
+      onClick={handleCategoryClick}
       className={`${color} rounded-2xl p-6 hover:shadow-xl transition duration-300 cursor-pointer`}
     >
       <div className="text-5xl mb-4">{emoji}</div>

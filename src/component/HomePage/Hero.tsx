@@ -32,11 +32,12 @@ const Hero = () => {
             </button>
 
             <button
+            onClick={() => navigate("/about")}
               className="border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-orange-600 transition"
             >
               Learn More
             </button>
-
+          
           </div>
         </div>
 
